@@ -1,0 +1,150 @@
+task_manager/
+│
+├── task_manager.py
+├── tasks.json
+├── README.md
+└── .gitignore
+
+
+import json
+import os
+
+# File to store tasks
+TASKS_FILE = 'tasks.json'
+
+def load_tasks():
+    """Load tasks from the JSON file."""
+    if os.path.exists(TASKS_FILE):
+        with open(TASKS_FILE, 'r') as file:
+            return json.load(file)
+    return []
+
+def save_tasks(tasks):
+    """Save tasks to the JSON file."""
+    with open(TASKS_FILE, 'w') as file:
+        json.dump(tasks, file, indent=4)
+
+def add_task(tasks, description):
+    """Add a new task."""
+    task = {'description': description, 'completed': False}
+    tasks.append(task)
+    save_tasks(tasks)
+    print(f"Task added: {description}")
+
+def view_tasks(tasks):
+    """View all tasks."""
+    if not tasks:
+        print("No tasks found.")
+        return
+    
+    for index, task in enumerate(tasks, start=1):
+        status = "Done" if task['completed'] else "Not Done"
+        print(f"{index}. {task['description']} - {status}")
+
+def mark_completed(tasks, task_index):
+    """Mark a task as completed."""
+    if 1 <= task_index <= len(tasks):
+        tasks[task_index - 1]['completed'] = True
+        save_tasks(tasks)
+        print(f"Task marked as completed: {tasks[task_index - 1]['description']}")
+    else:
+        print("Invalid task index.")
+
+def delete_task(tasks, task_index):
+    """Delete a task."""
+    if 1 <= task_index <= len(tasks):
+        deleted_task = tasks.pop(task_index - 1)
+        save_tasks(tasks)
+        print(f"Task deleted: {deleted_task['description']}")
+    else:
+        print("Invalid task index.")
+
+def main():
+    tasks = load_tasks()
+
+    while True:
+        print("\nTask Manager")
+        print("1. Add Task")
+        print("2. View Tasks")
+        print("3. Mark Task as Completed")
+        print("4. Delete Task")
+        print("5. Exit")
+        
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            description = input("Enter task description: ")
+            add_task(tasks, description)
+        elif choice == '2':
+            view_tasks(tasks)
+        elif choice == '3':
+            task_index = int(input("Enter the task number to mark as completed: "))
+            mark_completed(tasks, task_index)
+        elif choice == '4':
+            task_index = int(input("Enter the task number to delete: "))
+            delete_task(tasks, task_index)
+        elif choice == '5':
+            print("Exiting...")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":# Task Manager
+
+A simple command-line task manager application written in Python.
+
+## Features
+
+- Add tasks
+- View tasks
+- Mark tasks as completed
+- Delete tasks
+
+## How to Use
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/task_manager.git
+   cd task_manager
+    main()
+
+### `.gitignore`
+
+```plaintext
+# Ignore the tasks.json file
+tasks.json
+MIT License
+
+Copyright (c) 2023 Your Name
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.git init
+git add .
+git commit -m "Initial commit"
+
+git remote add origin https://github.com/yourusername/task_manager.git
+git branch -M main
+git push -u origin main
+
+git push origin main
+
+
+
+    
+
+    
