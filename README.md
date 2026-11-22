@@ -1,17 +1,45 @@
 # Task Manager
 
-A simple command-line task manager application written in Python.
+Gerenciador de tarefas de linha de comando em Python (somente biblioteca padrão).
 
-## Features
+## Funcionalidades
 
-- Add tasks
-- View tasks
-- Mark tasks as completed
-- Delete tasks
+- Adicionar tarefa (descrição vazia é rejeitada)
+- Listar tarefas
+- Marcar tarefa como concluída
+- Excluir tarefa
 
-## How to Use
+As tarefas ficam em `tasks.json` no diretório atual (ignorado pelo git). Se o arquivo
+estiver corrompido, o programa avisa e começa com lista vazia.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/task_manager.git
-   cd task_manager
+## Requisitos
+
+- Python 3.9+
+
+## Execução
+
+```bash
+git clone https://github.com/Lelolima/Task-manager-app.git
+cd Task-manager-app
+python task_manager.py
+```
+
+## Testes e lint
+
+```bash
+pip install pytest ruff
+ruff check .
+pytest -q
+```
+
+## Variáveis de ambiente
+
+Nenhuma.
+
+## CI
+
+`.github/workflows/ci.yml` roda lint (ruff), testes (pytest) e compilação a cada push/PR.
+
+## Licença
+
+MIT — ver `LICENSE`.
